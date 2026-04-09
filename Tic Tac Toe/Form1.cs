@@ -6,8 +6,16 @@ namespace Tic_Tac_Toe
     {
 
         public static string input = "X";
+
         bool turn = true;
 
+        int[,] playfield =
+        { 
+            {0, 0, 0},
+            {0, 0, 0},
+            {0, 0, 0} 
+        };
+        
 
         public Form1()
         {
