@@ -9,13 +9,15 @@ namespace Tic_Tac_Toe
 
         bool turn = true;
 
-        int[,] playfield =
+        int[,] board =
         { 
             {0, 0, 0},
             {0, 0, 0},
             {0, 0, 0} 
         };
-        
+
+        int currentRow;
+        int currentCol;
 
         public Form1()
         {
@@ -29,7 +31,6 @@ namespace Tic_Tac_Toe
             button7.Click += when_clicked;
             button8.Click += when_clicked;
             button9.Click += when_clicked;
-
         }
 
         public void when_clicked(object? sender, EventArgs e)
@@ -40,18 +41,88 @@ namespace Tic_Tac_Toe
                 if (turn)
                 {
                     button.Text = "X";
+                    
                 }
                 else
                 {
                     button.Text = "O";
                 }
                 turn = !turn;
+
+                if (button == button1)
+                {
+                    board[0, 0] = turn ? 1 : 2;
+                    currentRow = 0;
+                    currentCol = 0;
+                }
+                else if (button == button2)
+                {
+                    board[0, 1] = turn ? 1 : 2;
+                    currentRow = 0;
+                    currentCol = 1;
+                    
+                }
+                else if (button == button3)
+                {
+                    board[0, 2] = turn ? 1 : 2;
+                    currentRow = 0;
+                    currentCol = 2;
+                }
+                else if (button == button4)
+                {
+                    board[1, 0] = turn ? 1 : 2;
+                    currentRow = 1;
+                    currentCol = 0;
+                }
+                else if (button == button5)
+                {
+                    board[1, 1] = turn ? 1 : 2;
+                    currentRow = 1;
+                    currentCol = 1;
+                }
+                else if (button == button6)
+                {
+                    board[1, 2] = turn ? 1 : 2;
+                    currentRow = 1;
+                    currentCol = 2;
+                }
+                else if (button == button7)
+                {
+                    board[2, 0] = turn ? 1 : 2;
+                    currentRow = 2;
+                    currentCol = 0;
+                }
+                else if (button == button8)
+                {
+                    board[2, 1] = turn ? 1 : 2;
+                    currentRow = 2;
+                    currentCol = 1;
+                }
+                else if (button == button9)
+                {
+                    board[2, 2] = turn ? 1 : 2;
+                    currentRow = 2;
+                    currentCol = 2;
+                    
+
+                }
+
             }
         }
             
-        public void check_win ()
+        public void check_win (int row, int col)
         {
-
+            for (int i = 0; i < board.GetLength(0); i++)
+            {
+                if (board[row, i] == 1)
+                {
+                    label.Text = "Player 1 (X) wins!";
+                }
+                else if (board[row, i] == 2)
+                {
+                    label.Text = "Player 2 (O) wins!";
+                }
+            }
         }
 
         }

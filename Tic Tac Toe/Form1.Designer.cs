@@ -37,6 +37,7 @@
             button7 = new Button();
             button8 = new Button();
             button9 = new Button();
+            label = new Label();
             SuspendLayout();
             // 
             // button1
@@ -46,7 +47,6 @@
             button1.Size = new Size(90, 90);
             button1.TabIndex = 0;
             button1.UseVisualStyleBackColor = true;
- 
             // 
             // button2
             // 
@@ -55,7 +55,6 @@
             button2.Size = new Size(90, 90);
             button2.TabIndex = 1;
             button2.UseVisualStyleBackColor = true;
-       
             // 
             // button3
             // 
@@ -113,11 +112,21 @@
             button9.TabIndex = 8;
             button9.UseVisualStyleBackColor = true;
             // 
+            // label
+            // 
+            label.AutoSize = true;
+            label.Location = new Point(121, 318);
+            label.Name = "label";
+            label.Size = new Size(46, 15);
+            label.TabIndex = 10;
+            label.Text = "Playing";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(308, 306);
+            ClientSize = new Size(308, 356);
+            Controls.Add(label);
             Controls.Add(button9);
             Controls.Add(button8);
             Controls.Add(button7);
@@ -130,6 +139,7 @@
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -143,5 +153,7 @@
         private Button button7;
         private Button button8;
         private Button button9;
+        private Label label1;
+        private Label label;
     }
 }
