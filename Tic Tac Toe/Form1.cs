@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Tic_Tac_Toe
@@ -10,14 +11,15 @@ namespace Tic_Tac_Toe
         bool turn = true;
 
         int[,] board =
-        { 
+        {
             {0, 0, 0},
             {0, 0, 0},
-            {0, 0, 0} 
+            {0, 0, 0}
         };
 
         int currentRow;
         int currentCol;
+
 
         public Form1()
         {
@@ -40,14 +42,14 @@ namespace Tic_Tac_Toe
             {
                 if (turn)
                 {
-                    button.Text = "X";
-                    
+                    button.Text = "O";
                 }
                 else
                 {
-                    button.Text = "O";
+                    button.Text = "X";
                 }
                 turn = !turn;
+
 
                 if (button == button1)
                 {
@@ -60,7 +62,7 @@ namespace Tic_Tac_Toe
                     board[0, 1] = turn ? 1 : 2;
                     currentRow = 0;
                     currentCol = 1;
-                    
+
                 }
                 else if (button == button3)
                 {
@@ -103,28 +105,68 @@ namespace Tic_Tac_Toe
                     board[2, 2] = turn ? 1 : 2;
                     currentRow = 2;
                     currentCol = 2;
-                    
+
 
                 }
+//                Debug.WriteLine(currentRow + ", " + currentCol);
+ //               Debug.WriteLine(board[currentRow, currentCol]);
 
+                check_win(currentRow, currentCol);
             }
         }
-            
-        public void check_win (int row, int col)
+
+        public void check_win(int row, int col)
         {
+            // Check for 3 in a row
             for (int i = 0; i < board.GetLength(0); i++)
             {
-                if (board[row, i] == 1)
+
+                if (board[row, i] == board[currentRow, currentCol])
                 {
-                    label.Text = "Player 1 (X) wins!";
+                    if (i == board.GetLength(0) - 1)
+                    {
+                        if (board[currentRow, currentCol] == 1)
+                        {
+                            label.Text = "X wins!";
+                        }
+                        else if (board[currentRow, currentCol] == 2)
+                        {
+                            label.Text = "O wins!";
+                        }
+                        Debug.WriteLine("3 in a row");
+                    }
                 }
-                else if (board[row, i] == 2)
+                else
                 {
-                    label.Text = "Player 2 (O) wins!";
+                    break;
                 }
             }
-        }
 
-        }
+            // Check for 3 in a column
+            for (int i = 0; i < board.GetLength(1); i++)
+            {
+                if (board[i, col] == board[currentRow, currentCol])
+                {
+                    if (i == board.GetLength(1) - 1)
+                    {
+                        if (board[currentRow, currentCol] == 1)
+                        {
+                            label.Text = "X wins!";
+                        }
+                        else if (board[currentRow, currentCol] == 2)
+                        {
+                            label.Text = "O wins!";
+                        }
+                        Debug.WriteLine("3 in a column");
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
 
+            // Check for 3 in a diagonal
+        }
     }
+}
