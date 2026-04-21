@@ -114,12 +114,12 @@
             // 
             // label
             // 
-            label.AutoSize = true;
-            label.Location = new Point(121, 318);
+            label.Location = new Point(12, 321);
             label.Name = "label";
-            label.Size = new Size(46, 15);
+            label.Size = new Size(282, 15);
             label.TabIndex = 10;
             label.Text = "Playing";
+            label.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
@@ -139,7 +139,6 @@
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion

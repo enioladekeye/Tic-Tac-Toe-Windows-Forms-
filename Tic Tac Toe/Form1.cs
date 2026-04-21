@@ -19,20 +19,14 @@ namespace Tic_Tac_Toe
 
         int currentRow;
         int currentCol;
+        int moves;
+
 
 
         public Form1()
         {
             InitializeComponent();
-            button1.Click += when_clicked;
-            button2.Click += when_clicked;
-            button3.Click += when_clicked;
-            button4.Click += when_clicked;
-            button5.Click += when_clicked;
-            button6.Click += when_clicked;
-            button7.Click += when_clicked;
-            button8.Click += when_clicked;
-            button9.Click += when_clicked;
+            gameStart();
         }
 
         public void when_clicked(object? sender, EventArgs e)
@@ -50,12 +44,15 @@ namespace Tic_Tac_Toe
                 }
                 turn = !turn;
 
+                moves--;
+
 
                 if (button == button1)
                 {
                     board[0, 0] = turn ? 1 : 2;
                     currentRow = 0;
                     currentCol = 0;
+                   
                 }
                 else if (button == button2)
                 {
@@ -105,8 +102,6 @@ namespace Tic_Tac_Toe
                     board[2, 2] = turn ? 1 : 2;
                     currentRow = 2;
                     currentCol = 2;
-
-
                 }
 //                Debug.WriteLine(currentRow + ", " + currentCol);
  //               Debug.WriteLine(board[currentRow, currentCol]);
@@ -127,13 +122,14 @@ namespace Tic_Tac_Toe
                     {
                         if (board[currentRow, currentCol] == 1)
                         {
-                            label.Text = "X wins!";
+                            label.Text = "X wins! Press any button to continue";
                         }
                         else if (board[currentRow, currentCol] == 2)
                         {
-                            label.Text = "O wins!";
+                            label.Text = "O wins! Press any button to continue";
                         }
                         Debug.WriteLine("3 in a row");
+                        gameOver();
                     }
                 }
                 else
@@ -151,13 +147,14 @@ namespace Tic_Tac_Toe
                     {
                         if (board[currentRow, currentCol] == 1)
                         {
-                            label.Text = "X wins!";
+                            label.Text = "X wins! Press any button to continue";
                         }
                         else if (board[currentRow, currentCol] == 2)
                         {
-                            label.Text = "O wins!";
+                            label.Text = "O wins! Press any button to continue";
                         }
-                        Debug.WriteLine("3 in a column");
+                        //Debug.WriteLine("3 in a column");
+                        gameOver();
                     }
                 }
                 else
@@ -167,6 +164,115 @@ namespace Tic_Tac_Toe
             }
 
             // Check for 3 in a diagonal
+            if (board[0, 0] == board[1, 1] && board[1, 1] == board[2, 2] && board[0, 0] != 0)
+                {
+                if (board[currentRow, currentCol] == 1)
+                {
+                    label.Text = "X wins! Press any button to continue";
+                }
+                else if (board[currentRow, currentCol] == 2)
+                {
+                    label.Text = "O wins! Press any button to continue";
+                }
+                //Debug.WriteLine("3 in a diagonal");
+                gameOver();
+            }
+            else if (board[0, 2] == board[1, 1] && board[1, 1] == board[2, 0] && board[0, 2] != 0)
+            {
+                if (board[currentRow, currentCol] == 1)
+                {
+                    label.Text = "X wins! Press any button to continue";
+                }
+                else if (board[currentRow, currentCol] == 2)
+                {
+                    label.Text = "O wins! Press any button to continue";
+                }
+                //Debug.WriteLine("3 in a diagonal");
+                gameOver();
+            }
+
+            //Check for tie
+            if (moves == 0)
+            {
+                label.Text = "Tie! Press any button to continue";
+                gameOver();
+            }
+
+
+
+        }
+
+        public void gameStart()
+        {
+            moves = board.GetLength(0) * board.GetLength(1);
+            
+            label.Text = "Playing";
+            button1.Click -= reset;
+            button2.Click -= reset;
+            button3.Click -= reset;
+            button4.Click -= reset;
+            button5.Click -= reset;
+            button6.Click -= reset;
+            button7.Click -= reset;
+            button8.Click -= reset;
+            button9.Click -= reset;
+
+            button1.Click += when_clicked;
+            button2.Click += when_clicked;
+            button3.Click += when_clicked;
+            button4.Click += when_clicked;
+            button5.Click += when_clicked;
+            button6.Click += when_clicked;
+            button7.Click += when_clicked;
+            button8.Click += when_clicked;
+            button9.Click += when_clicked;
+        }
+        public void gameOver()
+        {
+
+            button1.Click -= when_clicked;
+            button2.Click -= when_clicked;
+            button3.Click -= when_clicked;
+            button4.Click -= when_clicked;
+            button5.Click -= when_clicked;
+            button6.Click -= when_clicked;
+            button7.Click -= when_clicked;
+            button8.Click -= when_clicked;
+            button9.Click -= when_clicked;
+
+            button1.Click += reset;
+            button2.Click += reset;
+            button3.Click += reset;
+            button4.Click += reset;
+            button5.Click += reset;
+            button6.Click += reset;
+            button7.Click += reset;
+            button8.Click += reset;
+            button9.Click += reset;
+        }
+
+        public void reset(object? sender, EventArgs e)
+        {
+            
+            button1.Text = "";
+            button2.Text = "";
+            button3.Text = "";
+            button4.Text = "";
+            button5.Text = "";
+            button6.Text = "";
+            button7.Text = "";
+            button8.Text = "";
+            button9.Text = "";
+
+            for (int i = 0; i < board.GetLength(0); i++)
+            {
+                for (int j = 0; j < board.GetLength(1); j++)
+                {
+                    board[i, j] = 0;
+                }
+            }
+            turn = true;
+            gameStart();
         }
     }
 }
